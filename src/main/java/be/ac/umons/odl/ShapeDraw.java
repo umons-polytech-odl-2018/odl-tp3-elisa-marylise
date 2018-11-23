@@ -32,14 +32,22 @@ public class ShapeDraw {
 				messageZone.setText(messageZone.getText() + "\nMouse released: (" + e.getX() + ", " + e.getY() + ")");
 				Point end = new Point(e.getX(), e.getY());
 				if (rectBtn.isSelected()) {
-					((DrawingPanel) drawingArea).addDrawable(new Rectangle(start, end));
+					Rectangle rectangle = new Rectangle(start, end);
+					((DrawingPanel) drawingArea).addDrawable(rectangle);
+					messageZone.setText(messageZone.getText() + "\nA rectangle has been drawn" + "\nPerimeter = " + rectangle.perimeter(start,end)  + "\nArea = " + rectangle.area(start,end));
 				} else if (squareBtn.isSelected()) {
-					((DrawingPanel) drawingArea).addDrawable(new Square(start, Math.min(end.getX() - start.getX(), end.getY() - start.getY())));
+					Square square = new Square(start, Math.min(end.getX() - start.getX(), end.getY() - start.getY()));
+					((DrawingPanel) drawingArea).addDrawable(square);
+					messageZone.setText(messageZone.getText() + "\nA square has been drawn" + "\nPerimeter = " + square.perimeter(start,end)  + "\nArea = " + square.area(start,end)) ;
 				} else if (ellipsisBtn.isSelected()) {
-					((DrawingPanel) drawingArea).addDrawable(new Ellipsis(start, Math.abs(end.getX() - start.getX()), Math.abs(end.getY() - start.getY())));
+					Ellipsis ellipsis = new Ellipsis(start, Math.abs(end.getX() - start.getX()), Math.abs(end.getY() - start.getY()));
+					((DrawingPanel) drawingArea).addDrawable(ellipsis);
+					messageZone.setText(messageZone.getText() + "\nAn ellipsis has been drawn" + "\nPerimeter = " + ellipsis.perimeter()  + "\nArea = " + ellipsis.area());
 				}
 				else if (circleBtn.isSelected()) {
-					((DrawingPanel) drawingArea).addDrawable(new Circle(start, Math.abs(end.getX() - start.getX())));
+					Circle circle = new Circle(start, Math.abs(end.getX() - start.getX()));
+					((DrawingPanel) drawingArea).addDrawable(circle);
+					messageZone.setText(messageZone.getText() + "\nA circle has been drawn" + "\nPerimeter = " + circle.perimeter()  + "\nArea = " + circle.area());
 				}
 				drawingArea.repaint();
 			}
